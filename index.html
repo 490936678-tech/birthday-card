@@ -1,15 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>Birthday Card</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生日卡</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fce5e0;
+    font-family: sans-serif;
+  }
+
+  /* 信封外观 */
+  .envelope {
+    width: 200px;
+    height: 140px;
+    background: #d32f2f;
+    position: relative;
+    cursor: pointer;
+    perspective: 1000px;
+  }
+
+  /* 信封顶部翻盖 */
+  .flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: #b71c1c;
+    transform-origin: top;
+    transition: transform 0.8s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gold;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  /* 信封底部 */
+  .body {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background: #d32f2f;
+    border-top: 2px solid #b71c1c;
+  }
+
+  /* 弹出的图片 */
+  .card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 250px;
+    max-width: 90%;
+    transition: transform 0.5s;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  }
+
+  .card img {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+  }
+
+  /* 打开信封状态 */
+  .open .flap {
+    transform: rotateX(-180deg);
+  }
+
+  .open .card {
+    transform: translate(-50%, -50%) scale(1);
+  }
+</style>
 </head>
 <body>
 
-<h1>Happy Birthday</h1>
+<div class="envelope" id="envelope">
+  <div class="flap">Happy Birthday</div>
+  <div class="body"></div>
+</div>
 
-<img src="picture.koi.jpg" alt="birthday card">
+<div class="card" id="card">
+  < img src="picture.koi.jpg" alt="Birthday Image">
+</div>
+
+<script>
+  const envelope = document.getElementById('envelope');
+
+  envelope.addEventListener('click', () => {
+    envelope.classList.toggle('open');
+  });
+</script>
 
 </body>
 </html>
-
